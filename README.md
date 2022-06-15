@@ -27,3 +27,8 @@ pipenv install --dev [package_name] ?[package_version]
 ```
 pipenv shell
 ```
+
+### In the pipenv shell run
+```
+python src/main.py
+```
