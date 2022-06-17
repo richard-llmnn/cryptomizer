@@ -1,6 +1,8 @@
 import hashlib
 import os.path
+import string
 
+from random import sample
 from Crypto.Cipher import AES
 from Crypto import Random
 from Crypto.Util.Padding import pad, unpad
@@ -8,6 +10,7 @@ from typing import Any
 
 DEFAULT_MODE = AES.MODE_GCM
 ENCRYPTED_FILE_ENDING = ".crypt"
+
 
 def encrypt_file(binary_data: Any, key: str, block_size: int = 16) -> Any:
     # get 256 byte key
@@ -36,6 +39,7 @@ def decrypt_file(binary_data: Any, key: str, block_size: int = 16) -> Any:
     except Exception as exception:
         raise Exception("File could not be decrypted!")
 
+
 def encrypt_files_by_path(file_paths: list[str], output_folder: str, password: str) -> None:
     for file_path in file_paths:
         if not os.path.isabs(file_path):
@@ -63,3 +67,9 @@ def decrypt_files_by_path(file_paths: list[str], output_folder: str, password: s
 
             with open(os.path.join(output_folder, filename), "wb") as output_file:
                 output_file.write(decrypt_file(input_file.read(), password))
+
+
+# Warning, the generated password is not cryptographically secure!
+def generate_password(length: int) -> str:
+    password_as_list = sample(string.ascii_letters + string.digits, length)
+    return ''.join(str(char) for char in password_as_list)
