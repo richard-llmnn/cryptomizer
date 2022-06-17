@@ -1,18 +1,16 @@
 # Cryptomizer
 
 ## Table of contents
-___
 1. [Installation](#installation)
 2. [Commands](#commands)
+3. [Sources](#sources)
 
 ## Installation
-___
 1. Please install pipenv at first `pip install pipenv` -> [alternative installation methods](https://pypi.org/project/pipenv/)
 2. Pull the repository
 3. run `pipenv install`
 
 ## Commands
-___
 ### Add pip dependency
 ```
 pipenv install [package_name] ?[package_version]
@@ -32,3 +30,8 @@ pipenv shell
 ```
 python src/main.py
 ```
+
+## Sources
+- [Built-in packages](https://docs.python.org/3/py-modindex.html)
+- [Tkinter tutorial](https://blog.teclado.com/tkinters-grid-geometry-manager/)
+- [Github workflow tutorial](https://www.ipswitch.com/blog/how-to-build-your-first-github-actions-workflow)
