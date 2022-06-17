@@ -7,8 +7,6 @@ from Crypto.Util.Padding import pad, unpad
 from typing import Any
 
 DEFAULT_MODE = AES.MODE_GCM
-
-
 ENCRYPTED_FILE_ENDING = ".crypt"
 
 def encrypt_file(binary_data: Any, key: str, block_size: int = 16) -> Any:
