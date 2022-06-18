@@ -64,6 +64,7 @@ class SelectView(ctk.CTkFrame):
         self.files = tkfd.askopenfilenames()
         if len(self.files) > 0:
             self.container.frames["DecryptView"].tkraise()
+            self.container.frames["DecryptView"].start()
 
 
 class EncryptView(ctk.CTkFrame):
@@ -96,19 +97,22 @@ class EncryptView(ctk.CTkFrame):
     def start(self) -> NoReturn:
         # emtpy listbox
         self.file_list.delete(0, tkinter.END)
-
         for path in self.container.frames["SelectView"].files:
             self.file_list.insert(tk.END, path)
+
+        # empty password input
+        self.entry.delete(0, tk.END)
 
     def encrypt(self) -> NoReturn:
         paths = list(self.file_list.get(0, tk.END))
 
-        if not (dir := tk.filedialog.askdirectory()):
-            return
-
         password = str(self.entry.get())
         if len(password) < 4:
             raise Exception("Password not long enough")
+
+        if not (dir := tk.filedialog.askdirectory()):
+            return
+
         crypto.encrypt_files_by_path(paths, dir, password)
 
         tk.messagebox.showinfo(title="Encryption finished.", message="The Encryption has been finished.")
@@ -135,20 +139,51 @@ class DecryptView(ctk.CTkFrame):
         self.grid(column=2, row=2, rowspan=96, columnspan=96, sticky=tk.NSEW)
         self.columnconfigure(tuple(range(10)), weight=1)
         self.rowconfigure(tuple(range(10)), weight=1)
+
         self.entry = ctk.CTkEntry(master=self, placeholder_text="Password...")
         self.entry.grid(column=1, row=2, columnspan=8, sticky=tk.NSEW)
+
+        self.file_list = tk.Listbox(master=self, height=3, selectmode="multiple")
+        self.file_list.grid(column=1, row=3, columnspan=7, sticky=tk.NSEW)
+
+        self.remove_item_button = ctk.CTkButton(master=self, text="Remove selected elements", command=self.remove_items)
+        self.remove_item_button.grid(column=8, row=3, sticky=tk.NSEW)
+
         button = ctk.CTkButton(master=self, text="Decrypt now", command=self.decrypt)
-        button.grid(column=1, row=4, rowspan=3, columnspan=8, sticky=tk.NSEW)
+        button.grid(column=1, row=5, rowspan=3, columnspan=8, sticky=tk.NSEW)
+
         back_button = ctk.CTkButton(master=self, text="Back", command=self.back)
         back_button.grid(column=0, row=0, columnspan=10, sticky="NW")
 
+    def start(self) -> NoReturn:
+        # emtpy listbox
+        self.file_list.delete(0, tkinter.END)
+
+        for path in self.container.frames["SelectView"].files:
+            self.file_list.insert(tk.END, path)
+
+        # empty password input
+        self.entry.delete(0, tk.END)
+
     def decrypt(self) -> NoReturn:
+        paths = list(self.file_list.get(0, tk.END))
+
+        password = str(self.entry.get())
+        if len(password) < 4:
+            raise Exception("Password not long enough")
+
         if not (dir := tk.filedialog.askdirectory()):
             return
-        password = self.entry.get()
-        crypto.decrypt_files_by_path(list(self.container.frames["SelectView"].files), dir, password)
+
+        crypto.decrypt_files_by_path(paths, dir, password)
         tk.messagebox.showinfo(title="Decryption finished.", message="The Decrpytion has been finished.")
         self.container.frames["SelectView"].tkraise()
 
     def back(self) -> NoReturn:
         self.container.frames["SelectView"].tkraise()
+
+    def remove_items(self) -> NoReturn:
+        for entry in self.file_list.curselection():
+            # do not delete the last item
+            if self.file_list.size() > 1:
+                self.file_list.delete(entry)
