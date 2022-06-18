@@ -1,0 +1,13 @@
+name: "Create release"
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build_linux:
+    name: Create linux package
+
+  build_windows:
+    name: Create windows package
