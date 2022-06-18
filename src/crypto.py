@@ -6,7 +6,7 @@ from random import sample
 from Crypto.Cipher import AES
 from Crypto import Random
 from Crypto.Util.Padding import pad, unpad
-from typing import Any
+from typing import Any, NoReturn
 
 DEFAULT_MODE = AES.MODE_GCM
 ENCRYPTED_FILE_ENDING = ".crypt"
@@ -40,7 +40,7 @@ def decrypt_file(binary_data: Any, key: str, block_size: int = 16) -> Any:
         raise Exception("File could not be decrypted!")
 
 
-def encrypt_files_by_path(file_paths: list[str], output_folder: str, password: str) -> None:
+def encrypt_files_by_path(file_paths: list[str], output_folder: str, password: str) -> NoReturn:
     for file_path in file_paths:
         if not os.path.isabs(file_path):
             raise Exception("File could not be opened!")
@@ -52,7 +52,7 @@ def encrypt_files_by_path(file_paths: list[str], output_folder: str, password: s
                 output_file.write(encrypt_file(input_file.read(), password))
 
 
-def decrypt_files_by_path(file_paths: list[str], output_folder: str, password: str) -> None:
+def decrypt_files_by_path(file_paths: list[str], output_folder: str, password: str) -> NoReturn:
     for file_path in file_paths:
         if not os.path.isabs(file_path):
             raise Exception("File could not be opened!")
