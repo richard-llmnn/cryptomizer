@@ -61,7 +61,7 @@ def decrypt_files_by_path(file_paths: list[str], output_folder: str, password: s
             filename = os.path.split(file_path)[1]
 
             if ENCRYPTED_FILE_ENDING not in filename:
-                raise Exception(f"The given file ${file_path} is not an encrypted file!")
+                raise Exception(f"The given file {file_path} is not an encrypted file!")
             # remove the ".crypt" from the file
             filename = filename.removesuffix(ENCRYPTED_FILE_ENDING)
 
