@@ -1,13 +1,5 @@
-import ui.view
-
-
-def main():
-    ui.view.MainView([
-        ui.view.EncryptView,
-        ui.view.DecryptView,
-        ui.view.SelectView
-    ])
+from ui.Main import Main as App
 
 
 if __name__ == "__main__":
-    main()
+    App()
