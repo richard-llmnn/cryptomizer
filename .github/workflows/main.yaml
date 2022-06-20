@@ -7,7 +7,30 @@ on:
 
 jobs:
   build_linux:
+    runs-on: ubuntu-22.04
     name: Create linux package
+    strategy:
+      matrix:
+        python-version: ["3.6", "3.7", "3.8", "3.9", "3.10"]
+    steps:
+      - uses: "actions/setup-python@v2"
+        with:
+          python-version: "${{matrix.python-version}}"
+      - name: "Install dependencies"
+        run: |
+          sudo apt install make
+          python -VV
+          python -m pip install pipenv
+          python -m pipenv install
+      - name: "Build package"
+        run: |
+          make build-linux
+      - uses: "actions/upload-artifact@v3"
+        with:
+          name: "build-linux-artifact"
+          path: "dist"
+          
 
-  build_windows:
-    name: Create windows package
+#  build_windows:
+#    runs-on: windows-2022
+#    name: Create windows package
