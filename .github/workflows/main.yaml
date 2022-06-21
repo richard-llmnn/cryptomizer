@@ -58,7 +58,7 @@ jobs:
         with:
           mode: update
           tag_name: ${{github.ref_name}}
-          release_name: Automatic Builds
+          release_name: Release ${{github.ref_name}}
           assets: ${{ matrix.program }}-${{ matrix.name }}.zip
           github_token: ${{ secrets.GITHUB_TOKEN }}
           replace_assets: true
