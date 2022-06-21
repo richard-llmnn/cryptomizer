@@ -22,6 +22,7 @@ class Main(ctk.CTk):
             ctk.CTk.winfo_screenheight(self),
             ctk.CTk.winfo_screenwidth(self)
         ))
+        self.title("Cryptomizer")
         # configure exception/error handling
         self.report_callback_exception = self.show_error
         # configure frames
