@@ -11,14 +11,14 @@ uninstall-linux:
 
 ctk := $(shell python -c 'import customtkinter;import os.path; print(os.path.split(customtkinter.__file__)[0]);')
 build-linux:
-	pyinstaller --noconfirm --onefile --windowed --add-data "$(ctk):customtkinter/" src/main.py
+	pyinstaller --noconfirm --onefile --windowed --name cryptomizer --icon assets/icon.ico --add-data "$(ctk):customtkinter/" src/main.py
 
 clean-linux:
-	rm -rf build main.spec
+	rm -rf build cryptomizer.spec
 
 # ----- windows -----
 build-windows:
-	pyinstaller --noconfirm --onefile --windowed --add-data "$(ctk);customtkinter/" src/main.py
+	pyinstaller --noconfirm --onefile --windowed --name cryptomizer --icon assets/icon.ico --add-data "$(ctk);customtkinter/" src/main.py
 
 # ----- mac-os -----
 build-macos: build-linux
