@@ -1,0 +1,67 @@
+name: "Create release"
+
+on:
+  push:
+    tags:
+      - v*
+    branches:
+    - master
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        program:
+          - cryptomizer
+        os:
+          - windows-latest
+          - ubuntu-latest
+          - macos-latest
+        include:
+          - os: windows-latest
+            name: windows
+          - os: ubuntu-latest
+            name: linux
+          - os: macos-latest
+            name: macos
+    name: ${{ matrix.program }}-${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Setup Python
+        uses: actions/setup-python@v4.0.0
+        with:
+          python-version: '3.10'
+      - name: Install MSYS2 Dependencies
+        if: matrix.name == 'windows'
+        uses: msys2/setup-msys2@v2
+        with:
+          install: make
+      - uses: actions/checkout@v3
+      - name: Install Python Dependencies
+        run: |
+          pip install pipenv
+          pipenv --three install
+      - name: Build
+        run: |
+          pipenv run make build-${{ matrix.name }}
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ matrix.program }}-${{ matrix.name }}
+          path: ./dist/*
+      - name: Zip Artifact
+        uses: thedoctor0/zip-release@master
+        with:
+          filename: ${{ matrix.program }}-${{ matrix.name }}.zip
+          path: ./dist/*
+      - name: Release Artifact
+        uses: Xotl/cool-github-releases@v1
+        with:
+          mode: update
+          tag_name: ${{github.ref_name}}
+          release_name: Automatic Builds
+          assets: ${{ matrix.program }}-${{ matrix.name }}.zip
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          replace_assets: true
+          body_mrkdwn: |
+            _Corresponding commit: ${{ github.sha }}_
