@@ -7,6 +7,7 @@ name = "pypi"
 customtkinter = ">=4.4.0"
 pycryptodome = "*"
 pyinstaller = ">=5.1"
+macholib = ">=1"
 
 [dev-packages]
 

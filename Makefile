@@ -21,4 +21,4 @@ build-windows:
 	pyinstaller --noconfirm --onefile --windowed --add-data "$(ctk);customtkinter/" src/main.py
 
 # ----- mac-os -----
-build-mac: build-linux
+build-macos: build-linux

@@ -1,9 +1,9 @@
 name: "Create release"
 
-on: "push"
-#  push:
-#    tags:
-#      - '*'
+on:
+  push:
+    branches:
+    - master
 
 jobs:
   build:
@@ -25,31 +25,33 @@ jobs:
     name: ${{ matrix.program }}-${{ matrix.name }}
     runs-on: ${{ matrix.os }}
     steps:
+      - name: Setup Python
+        uses: actions/setup-python@v4.0.0
+        with:
+          python-version: '3.10'
       - name: Install MSYS2 Dependencies
-        if: matrix.platform.name == windows
+        if: matrix.name == 'windows'
         uses: msys2/setup-msys2@v2
         with:
           install: make
-      - name: Setup Python
-        uses: actions/setup-python@v4
+      - uses: actions/checkout@v3
       - name: Install Python Dependencies
         run: |
           pip install pipenv
-          pipenv install
-      - uses: actions/checkout@v3
+          pipenv --three install
       - name: Build
         run: |
-          pipenv shell
-          make build-${{ matrix.name }}
+          pipenv run make build-${{ matrix.name }}
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ matrix.program }}-${{ matrix.name }}
+          path: ./dist/*
       - name: Zip Artifact
         uses: thedoctor0/zip-release@master
         with:
           filename: ${{ matrix.program }}-${{ matrix.name }}.zip
           path: ./dist/*
-      - name: Upload Artifact
-        with:
-          name: ${{ matrix.program }}-${{ matrix.name }}
-          path: ${{ matrix.program }}-${{ matrix.name }}.zip
       - name: Release Artifact
         uses: Xotl/cool-github-releases@v1
         with:
