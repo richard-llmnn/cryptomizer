@@ -9,6 +9,7 @@ pycryptodome = "*"
 pyinstaller = ">=5.1"
 pillow = "*"
 macholib = "*"
+pywin32-ctypes = "*"
 
 [dev-packages]
 
