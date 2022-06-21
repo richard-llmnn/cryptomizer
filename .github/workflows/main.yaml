@@ -6,33 +6,58 @@ on: "push"
 #      - '*'
 
 jobs:
-  build_linux:
-    runs-on: ubuntu-22.04
-    name: Create linux package
+  build:
     strategy:
       matrix:
-        python-version: ["3.11"]
+        program:
+          - cryptomizer
+        os:
+          - windows-latest
+          - ubuntu-latest
+          - macos-latest
+        include:
+          - os: windows-latest
+            name: windows
+          - os: ubuntu-latest
+            name: linux
+          - os: macos-latest
+            name: macos
+    name: ${{ matrix.program }}-${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
     steps:
-      - uses: "actions/checkout@v3"
-      - uses: "actions/setup-python@v4"
+      - name: Install MSYS2 Dependencies
+        if: matrix.platform.name == windows
+        uses: msys2/setup-msys2@v2
         with:
-          python-version: ${{matrix.python-version}}
-          architecture: x64
-      - name: "Install dependencies"
+          install: make
+      - name: Setup Python
+        uses: actions/setup-python@v4
+      - name: Install Python Dependencies
         run: |
-          sudo apt install make
-          python -VV
-          python -m pip install pipenv
-          python -m pipenv install
-      - name: "Build package"
+          pip install pipenv
+          pipenv install
+      - uses: actions/checkout@v3
+      - name: Build
         run: |
-          make build-linux
-      - uses: "actions/upload-artifact@v3"
+          pipenv shell
+          make build-${{ matrix.name }}
+      - name: Zip Artifact
+        uses: thedoctor0/zip-release@master
         with:
-          name: "build-linux-artifact"
-          path: "dist"
-          
-
-#  build_windows:
-#    runs-on: windows-2022
-#    name: Create windows package
+          filename: ${{ matrix.program }}-${{ matrix.name }}.zip
+          path: ./dist/*
+      - name: Upload Artifact
+        with:
+          name: ${{ matrix.program }}-${{ matrix.name }}
+          path: ${{ matrix.program }}-${{ matrix.name }}.zip
+      - name: Release Artifact
+        uses: Xotl/cool-github-releases@v1
+        with:
+          mode: update
+          tag_name: ci
+          release_name: Automatic Builds
+          assets: ${{ matrix.program }}-${{ matrix.name }}.zip
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          replace_assets: true
+          body_mrkdwn: |
+            _Corresponding commit: ${{ github.sha }}_
