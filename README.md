@@ -1,9 +1,15 @@
 # Cryptomizer
 
 ## Table of contents
-1. [Installation](#installation)
+1. [How to use Crypomizer as normal user](#how-to-use-cryptomizer-as-normal-user)
+2. [Installation](#installation)
 2. [Commands](#commands)
 3. [Sources](#sources)
+
+## How to use Cryptomizer as normal user
+First go the [releases page](https://github.com/richard-llmnn/cryptomizer/releases) and select the version you want.  
+Download the `[your_operating_system].zip` file for your operating system.  
+Unzip the folder and run the program.
 
 ## Installation
 1. Please install pipenv at first `pip install pipenv` -> [alternative installation methods](https://pypi.org/project/pipenv/)
