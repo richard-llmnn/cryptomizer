@@ -8,25 +8,34 @@ import ui.SelectView
 
 class DecryptView(ui.AbstractView.AbstractView):
     def __init__(self, container, storage) -> NoReturn:
+        ctk.set_appearance_mode("dark")
+        ctk.set_default_color_theme("blue")
         super().__init__(container, storage)
         self.grid(column=2, row=2, rowspan=96, columnspan=96, sticky=tk.NSEW)
         self.columnconfigure(tuple(range(10)), weight=1)
         self.rowconfigure(tuple(range(10)), weight=1)
 
-        self.entry = ctk.CTkEntry(master=self, placeholder_text="Password...")
-        self.entry.grid(column=1, row=2, columnspan=8, sticky=tk.NSEW)
-
-        self.file_list = tk.Listbox(master=self, height=3, selectmode="multiple")
-        self.file_list.grid(column=1, row=3, columnspan=7, sticky=tk.NSEW)
-
-        self.remove_item_button = ctk.CTkButton(master=self, text="Remove selected elements", command=self.remove_items)
-        self.remove_item_button.grid(column=8, row=3, sticky=tk.NSEW)
-
-        button = ctk.CTkButton(master=self, text="Decrypt now", command=self.decrypt)
-        button.grid(column=1, row=5, rowspan=3, columnspan=8, sticky=tk.NSEW)
-
+        # back button
         back_button = ctk.CTkButton(master=self, text="Back", command=self.back)
         back_button.grid(column=0, row=0, columnspan=10, sticky="NW")
+        # password input field
+        self.entry = ctk.CTkEntry(master=self, placeholder_text="Password...")
+        self.entry.grid(column=1, row=1, columnspan=8, sticky=tk.NSEW)
+        # file list box
+        self.file_list = tk.Listbox(master=self, height=1, selectmode="multiple")
+        self.file_list.grid(column=1, row=3, columnspan=7, rowspan=4, sticky=tk.NSEW)
+        # remove file from list-box button
+        self.remove_item_button = ctk.CTkButton(
+            master=self,
+            text="Remove selected elements",
+            command=self.remove_items,
+            fg_color="red",
+            hover_color="#ff5555"
+        )
+        self.remove_item_button.grid(column=8, row=3, rowspan=4, sticky=tk.NSEW)
+        # start decryption button
+        button = ctk.CTkButton(master=self, text="Decrypt now", command=self.decrypt)
+        button.grid(column=1, row=8, rowspan=1, columnspan=8, sticky=tk.NSEW)
 
     def start(self) -> NoReturn:
         for path in self.storage.get("files"):

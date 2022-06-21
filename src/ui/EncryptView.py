@@ -14,23 +14,30 @@ class EncryptView(ui.AbstractView.AbstractView):
         self.columnconfigure(tuple(range(10)), weight=1)
         self.rowconfigure(tuple(range(10)), weight=1)
 
-        self.entry = ctk.CTkEntry(master=self, placeholder_text="Password...")
-        self.entry.grid(column=1, row=2, columnspan=7, sticky=tk.NSEW)
-
-        self.file_list = tk.Listbox(master=self, height=3, selectmode="multiple")
-        self.file_list.grid(column=1, row=3, columnspan=7, sticky=tk.NSEW)
-
-        self.remove_item_button = ctk.CTkButton(master=self, text="Remove selected elements", command=self.remove_items)
-        self.remove_item_button.grid(column=8, row=3, sticky=tk.NSEW)
-
-        generate_button = ctk.CTkButton(master=self, text="Generate", command=self.generate_password)
-        generate_button.grid(column=8, row=2, sticky=tk.NSEW)
-
-        button = ctk.CTkButton(master=self, text="Encrypt now", command=self.encrypt)
-        button.grid(column=1, row=5, rowspan=3, columnspan=8, sticky=tk.NSEW)
-
+        # back button
         back_button = ctk.CTkButton(master=self, text="Back", command=self.back)
         back_button.grid(column=0, row=0, columnspan=10, sticky="NW")
+        # password input field
+        self.entry = ctk.CTkEntry(master=self, placeholder_text="Password...")
+        self.entry.grid(column=1, row=1, columnspan=7, sticky=tk.NSEW)
+        # generate password button
+        generate_button = ctk.CTkButton(master=self, text="Generate", command=self.generate_password)
+        generate_button.grid(column=8, row=1, sticky=tk.NSEW)
+        # file list box
+        self.file_list = tk.Listbox(master=self, height=1, selectmode="multiple")
+        self.file_list.grid(column=1, row=3, columnspan=7, rowspan=4, sticky=tk.NSEW)
+        # remove file from list-box button
+        self.remove_item_button = ctk.CTkButton(
+            master=self,
+            text="Remove selected elements",
+            command=self.remove_items,
+            fg_color="red",
+            hover_color="#ff5555"
+        )
+        self.remove_item_button.grid(column=8, row=3, rowspan=4, sticky=tk.NSEW)
+        # start encryption button
+        button = ctk.CTkButton(master=self, text="Encrypt now", command=self.encrypt)
+        button.grid(column=1, row=8, rowspan=1, columnspan=8, sticky=tk.NSEW)
 
     def start(self) -> NoReturn:
         for path in self.storage.get("files"):
