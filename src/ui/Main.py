@@ -1,9 +1,11 @@
-import customtkinter as ctk
-import traceback
-import tkinter as tk
-from typing import NoReturn
 import ui.AbstractView
 import ui.SelectView
+import traceback
+
+import customtkinter as ctk
+import tkinter as tk
+
+from typing import NoReturn
 
 
 

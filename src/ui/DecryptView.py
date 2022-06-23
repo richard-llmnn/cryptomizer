@@ -1,9 +1,11 @@
 import crypto
-import customtkinter as ctk
-from typing import NoReturn
-import tkinter as tk
 import ui.AbstractView
 import ui.SelectView
+
+import customtkinter as ctk
+import tkinter as tk
+
+from typing import NoReturn
 
 
 class DecryptView(ui.AbstractView.AbstractView):

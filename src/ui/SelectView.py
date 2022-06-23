@@ -1,10 +1,12 @@
-import tkinter.filedialog as tkfd
-import customtkinter as ctk
-from typing import NoReturn
-import tkinter as tk
 import ui.EncryptView
 import ui.DecryptView
 import ui.AbstractView
+
+import tkinter.filedialog as tkfd
+import customtkinter as ctk
+import tkinter as tk
+
+from typing import NoReturn
 
 
 class SelectView(ui.AbstractView.AbstractView):
