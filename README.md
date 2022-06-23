@@ -1,5 +1,7 @@
 # Cryptomizer
 
+Go to German version here [README_DE.md](README_DE.md).
+
 ## Table of contents
 1. [How to use Crypomizer as normal user](#how-to-use-cryptomizer-as-normal-user)
 2. [Installation](#installation)
