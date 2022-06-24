@@ -36,7 +36,14 @@ class EncryptView(ui.AbstractView.AbstractView):
             fg_color="red",
             hover_color="#ff5555"
         )
-        self.remove_item_button.grid(column=8, row=3, rowspan=4, sticky=tk.NSEW)
+        self.remove_item_button.grid(column=8, row=3, rowspan=2, sticky=tk.NSEW)
+        # add files button
+        self.add_item_button = ctk.CTkButton(
+            master=self,
+            text="Add files",
+            command=self.add_items
+        )
+        self.add_item_button.grid(column=8, row=5, rowspan=2, sticky=tk.NSEW)
         # start encryption button
         button = ctk.CTkButton(master=self, text="Encrypt now", command=self.encrypt)
         button.grid(column=1, row=8, rowspan=1, columnspan=8, sticky=tk.NSEW)
@@ -51,7 +58,7 @@ class EncryptView(ui.AbstractView.AbstractView):
         password = str(self.entry.get())
         if len(password) < 4:
             raise Exception("Password not long enough")
-
+        # get output directory
         if not (dir := tk.filedialog.askdirectory()):
             return
 
@@ -72,3 +79,13 @@ class EncryptView(ui.AbstractView.AbstractView):
             # do not delete the last item
             if self.file_list.size() > 1:
                 self.file_list.delete(entry)
+
+
+    def add_items(self) -> NoReturn:
+        files = tk.filedialog.askopenfilenames()
+        if len(files) > 0:
+            for file_path in files:
+                paths = list(self.file_list.get(0, tk.END))
+                if file_path not in paths:
+                    self.file_list.insert(tk.END, file_path)
+
