@@ -37,6 +37,13 @@ class Translator:
 
         return self.dictionaries.get(language_code).get("self")
 
+    def get_code_by_language(self, language: str) -> str | None:
+        for lang_code, dictionary in self.dictionaries.items():
+            if dictionary.get("self") == language:
+                return lang_code
+
+        return None
+
 
 # the current language code
 language = ""

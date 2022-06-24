@@ -64,13 +64,12 @@ class SelectView(ui.AbstractView.AbstractView):
             })
 
     def change_language(self, new_language: str) -> NoReturn:
-        match new_language:
-            case "Deutsch":
-                tt.set_current_language_code("de_DE")
-            case "Englisch":
-                tt.set_current_language_code("en_EN")
-            case _:
-                tt.set_current_language_code("en_EN")
+        code = tt.get_instance().get_code_by_language(new_language)
+        # english is the fallback language
+        if code == None:
+            code = "en_EN"
+
+        tt.set_current_language_code(code)
         # re-render the frame in the new language
         self.container.switch_frame(ui.SelectView.SelectView)
 
