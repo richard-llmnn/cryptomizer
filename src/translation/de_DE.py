@@ -1,5 +1,17 @@
 dictionary = {
     "self": "Deutsch",
     "encrypt.files": "Dateien verschlüsseln",
-    "decrypt.files": "Dateien entschlüsseln"
+    "decrypt.files": "Dateien entschlüsseln",
+    "password": "Passwort",
+    "generate": "Generieren",
+    "remove.selected.elements": "Ausgewählte Elemente entfernen",
+    "add.files": "Dateien hinzufügen",
+    "encrypt.now": "Verschlüsseln",
+    "decrypt.now": "Entschlüsseln",
+    "password.not.long.enough": "Passwort nicht lang genug",
+    "encryption.finished": "Verschlüsseln erfolgreich",
+    "decryption.finished": "Entschlüsseln erfolgreich",
+    "the.encryption.has.been.finished": "Verschlüsseln wurde beendet",
+    "the.decryption.has.been.finished": "Entschlüsseln wurde beendet",
+    "back": "Zurück",
 }
