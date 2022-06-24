@@ -5,6 +5,7 @@ import ui.AbstractView
 import tkinter.filedialog as tkfd
 import customtkinter as ctk
 import tkinter as tk
+import translation.Translator as tt
 
 from typing import NoReturn
 
@@ -22,19 +23,33 @@ class SelectView(ui.AbstractView.AbstractView):
         # encrypt button
         encrypt_button = ctk.CTkButton(
             master=self,
-            text="Encrypt Files",
+            text=tt.translate("encrypt.files"),
             command=self.show_encrypt_view
         )
         encrypt_button.grid(column=1, row=4, columnspan=8, sticky=tk.NSEW)
         # decrypt button
         decrypt_button = ctk.CTkButton(
             master=self,
-            text="Decrypt Files",
+            text=tt.translate("decrypt.files"),
             command=self.show_decrypt_view,
             fg_color="#1F6AA5",
             hover_color="#144870"
         )
         decrypt_button.grid(column=1, row=6, columnspan=8, sticky=tk.NSEW)
+        # get all languages (the current language is at the first place)
+        languages = tt.get_instance().get_languages()
+        current_language = tt.get_instance().get_language_by_code(tt.get_current_language_code())
+        languages.remove(current_language)
+        languages.insert(0, current_language)
+        # add language switcher
+        self.language_switcher = ctk.CTkOptionMenu(
+            master=self,
+            values=languages,
+            command=self.change_language
+        )
+        self.language_switcher.grid(column=8, row=0, columnspan=2, sticky=tk.N+tk.EW)
+
+        #self.language_switcher.set(get_language())
 
     def show_encrypt_view(self) -> NoReturn:
         self.files = tkfd.askopenfilenames()
@@ -49,6 +64,18 @@ class SelectView(ui.AbstractView.AbstractView):
             self.container.switch_frame(ui.DecryptView.DecryptView, {
                 "files": self.files
             })
+
+    def change_language(self, new_language: str) -> NoReturn:
+        match new_language:
+            case "Deutsch":
+                tt.set_current_language_code("de_DE")
+            case "Englisch":
+                tt.set_current_language_code("en_EN")
+            case _:
+                tt.set_current_language_code("en_EN")
+        # re-render the frame in the new language
+        self.container.switch_frame(ui.SelectView.SelectView)
+
 
     def start(self):
         pass
