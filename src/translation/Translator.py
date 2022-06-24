@@ -74,7 +74,7 @@ def translate(key: str, language_code: str = "", use_fallback: bool = True) -> s
         get_current_language_code() if language_code == "" else language_code,
         key
     )
-
+    # if no translation is available -> fallback to english
     if translation == False:
         translation = get_instance().translate(
             "en_EN",
