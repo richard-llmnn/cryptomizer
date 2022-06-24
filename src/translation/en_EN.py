@@ -16,4 +16,5 @@ dictionary = {
     "back": "Back",
     "select.files.for.encryption": "Select files for encryption",
     "select.files.for.decryption": "Select files for decryption",
+    "password.copied": "Password copied to clipboard",
 }
