@@ -14,4 +14,6 @@ dictionary = {
     "the.encryption.has.been.finished": "The Encryption has been finished",
     "the.decryption.has.been.finished": "The Decryption has been finished",
     "back": "Back",
+    "select.files.for.encryption": "Select files for encryption",
+    "select.files.for.decryption": "Select files for decryption",
 }

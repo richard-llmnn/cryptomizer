@@ -52,14 +52,14 @@ class SelectView(ui.AbstractView.AbstractView):
         #self.language_switcher.set(get_language())
 
     def show_encrypt_view(self) -> NoReturn:
-        self.files = tkfd.askopenfilenames()
+        self.files = tkfd.askopenfilenames(title=tt.translate("select.files.for.encryption"))
         if len(self.files) > 0:
             self.container.switch_frame(ui.EncryptView.EncryptView, {
                 "files": self.files
             })
 
     def show_decrypt_view(self) -> NoReturn:
-        self.files = tkfd.askopenfilenames()
+        self.files = tkfd.askopenfilenames(filetypes=[("CRYPT", ".crypt")], title=tt.translate("select.files.for.decryption"))
         if len(self.files) > 0:
             self.container.switch_frame(ui.DecryptView.DecryptView, {
                 "files": self.files

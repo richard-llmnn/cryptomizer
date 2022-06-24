@@ -82,7 +82,7 @@ class EncryptView(ui.AbstractView.AbstractView):
                 self.file_list.delete(entry)
 
     def add_items(self) -> NoReturn:
-        files = tk.filedialog.askopenfilenames()
+        files = tk.filedialog.askopenfilenames(title=translate("select.files.for.encryption"))
         if len(files) > 0:
             for file_path in files:
                 paths = list(self.file_list.get(0, tk.END))

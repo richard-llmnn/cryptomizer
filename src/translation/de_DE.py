@@ -11,7 +11,9 @@ dictionary = {
     "password.not.long.enough": "Passwort nicht lang genug",
     "encryption.finished": "Verschlüsseln erfolgreich",
     "decryption.finished": "Entschlüsseln erfolgreich",
-    "the.encryption.has.been.finished": "Verschlüsseln wurde beendet",
-    "the.decryption.has.been.finished": "Entschlüsseln wurde beendet",
+    "the.encryption.has.been.finished": "Dateien wurden erfolgreich verschlüsselt",
+    "the.decryption.has.been.finished": "Dateien wurden erfolgreich entschlüsselt",
     "back": "Zurück",
+    "select.files.for.encryption": "Dateien zum Verschlüsseln auswählen",
+    "select.files.for.decryption": "Dateien zum Entschlüsseln auswählen",
 }
