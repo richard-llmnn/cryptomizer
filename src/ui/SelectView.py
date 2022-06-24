@@ -49,8 +49,6 @@ class SelectView(ui.AbstractView.AbstractView):
         )
         self.language_switcher.grid(column=8, row=0, columnspan=2, sticky=tk.N+tk.EW)
 
-        #self.language_switcher.set(get_language())
-
     def show_encrypt_view(self) -> NoReturn:
         self.files = tkfd.askopenfilenames(title=tt.translate("select.files.for.encryption"))
         if len(self.files) > 0:
