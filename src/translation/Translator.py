@@ -1,7 +1,8 @@
 from typing import NoReturn
 from .de_DE import dictionary as de_DE_dict
 from .en_EN import dictionary as en_EN_dict
-from.zh_CN import dictionary as zh_CN_dict
+from .zh_CN import dictionary as zh_CN_dict
+from .es_ES import dictionary as es_ES_dict
 
 class Translator:
     def __init__(self):
@@ -71,6 +72,7 @@ def get_instance() -> Translator:
         instance.add_dictionary("de_DE", de_DE_dict)
         instance.add_dictionary("en_EN", en_EN_dict)
         instance.add_dictionary("zh_CN", zh_CN_dict)
+        instance.add_dictionary("es_ES", es_ES_dict)
         set_current_language_code("en_EN")
 
     return instance
