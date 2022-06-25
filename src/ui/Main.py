@@ -1,12 +1,11 @@
 import ui.AbstractView
 import ui.SelectView
-import traceback
 
 import customtkinter as ctk
 import tkinter as tk
 
 from typing import NoReturn
-
+from traceback import format_exception
 
 
 class Main(ctk.CTk):
@@ -35,7 +34,7 @@ class Main(ctk.CTk):
 
 
     def show_error(self, *args) -> NoReturn:
-        err = traceback.format_exception(*args)
+        err = format_exception(*args)
         tk.messagebox.showerror('Exception', err[-1])
         print(err)
 
