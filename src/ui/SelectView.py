@@ -57,7 +57,10 @@ class SelectView(ui.AbstractView.AbstractView):
             })
 
     def show_decrypt_view(self) -> NoReturn:
-        self.files = tkfd.askopenfilenames(filetypes=[("CRYPT", ".crypt")], title=tt.translate("select.files.for.decryption"))
+        self.files = tkfd.askopenfilenames(
+            filetypes=[("CRYPT", ".crypt"), (tt.translate("all"), "*")],
+            title=tt.translate("select.files.for.decryption")
+        )
         if len(self.files) > 0:
             self.container.switch_frame(ui.DecryptView.DecryptView, {
                 "files": self.files

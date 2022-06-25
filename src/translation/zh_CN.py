@@ -17,4 +17,5 @@ dictionary = {
     "select.files.for.encryption": "选择要加密的文件",
     "select.files.for.decryption": "选择要解密的文件",
     "password.copied": "密码已复制到剪贴板",
+    "all": "全部",
 }

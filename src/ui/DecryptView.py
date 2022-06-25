@@ -76,7 +76,10 @@ class DecryptView(ui.AbstractView.AbstractView):
 
 
     def add_items(self) -> NoReturn:
-        files = tk.filedialog.askopenfilenames(filetypes=[("CRYPT", ".crypt")], title=translate("select.files.for.decryption"))
+        files = tk.filedialog.askopenfilenames(
+            filetypes=[("CRYPT", ".crypt"), (translate("all"), "*")],
+            title=translate("select.files.for.decryption")
+        )
         if len(files) > 0:
             for file_path in files:
                 paths = list(self.file_list.get(0, tk.END))
