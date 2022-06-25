@@ -52,7 +52,7 @@ jobs:
         uses: thedoctor0/zip-release@master
         with:
           filename: ${{ matrix.program }}-${{ matrix.name }}.zip
-          path: ./dist/*
+          path: ./dist/cryptomizer*
       - name: Release Artifact
         uses: Xotl/cool-github-releases@v1
         with:

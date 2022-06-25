@@ -4,13 +4,10 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-customtkinter = ">=4.4.0"
+customtkinter = "*"
 pycryptodome = "*"
-pyinstaller = ">=5.1"
-pillow = "*"
-macholib = "*"
-pywin32-ctypes = "*"
-pefile = "*"
+nuitka = "*"
+ordered-set = "*"
 
 [dev-packages]
 
