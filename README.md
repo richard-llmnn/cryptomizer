@@ -1,42 +1,35 @@
 # Cryptomizer
 
-Go to German version here [README_DE.md](README_DE.md).
+> Cryptomizer is an easy GUI based file de- and encryption tool for linux, windows and mac.
+
+![](docs/select_view.png)
+
+![](docs/encrypt_view.png)
+
+[[Deutsche Anleitung](README_DE.md)]
 
 ## Table of contents
-1. [How to use Crypomizer as normal user](#how-to-use-cryptomizer-as-normal-user)
-2. [Installation](#installation)
+1. [How to use Cryptomizer as normal user](#how-to-use-cryptomizer-as-normal-user)
+2. [Installation for developers](#installation-for-developers)
 2. [Commands](#commands)
 3. [Sources](#sources)
 
 ## How to use Cryptomizer as normal user
-First go the [releases page](https://github.com/richard-llmnn/cryptomizer/releases) and select the version you want.  
-Download the `[your_operating_system].zip` file for your operating system.  
-Unzip the folder and run the program.
+1. First go the [releases page](https://github.com/richard-llmnn/cryptomizer/releases) and select the version you want.  
+2. Download the `cryptomizer-[your_operating_system].zip` file for your operating system.  
+3. Unzip the folder and run the program.
 
-## Installation
-1. Please install pipenv at first `pip install pipenv` -> [alternative installation methods](https://pypi.org/project/pipenv/)
-2. Pull the repository
-3. run `pipenv install`
+## Installation for developers
+1. Check if you Python version is at least **3.10!**
+2. Please install pipenv at first `pip install pipenv` -> [alternative installation methods](https://pypi.org/project/pipenv/)
+3. Pull the repository
+4. Run `pipenv install`
 
 ## Commands
-### Add pip dependency
-```
-pipenv install [package_name] ?[package_version]
-```
-
-### Add pip dev dependency
-```
-pipenv install --dev [package_name] ?[package_version]
-```
-
-### Create pipenv shell
-```
-pipenv shell
-```
 
 ### In the pipenv shell run
 ```
-python src/main.py
+pipenv run python src/main.py
 ```
 
 ## Sources
