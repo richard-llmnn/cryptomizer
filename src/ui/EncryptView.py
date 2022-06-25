@@ -26,9 +26,8 @@ class EncryptView(ui.AbstractView.AbstractView):
         # generate password button
         generate_button = ctk.CTkButton(master=self, text=translate("generate"), command=self.generate_password)
         generate_button.grid(column=8, row=1, sticky=tk.NSEW)
-        # password copied label
-        self.password_copied_label = ctk.CTkLabel(master=self, text="")
-        self.password_copied_label.grid(column=1, row=2, columnspan=8, sticky=tk.NSEW)
+        # placeholder so the password copied notice doesnt move the other elements
+        ctk.CTkLabel(master=self, text="").grid(column=1, row=2, columnspan=8, sticky=tk.NSEW)
         # file list box
         self.file_list = tk.Listbox(master=self, height=1, selectmode="multiple")
         self.file_list.grid(column=1, row=3, columnspan=7, rowspan=4, sticky=tk.NSEW)
@@ -83,9 +82,10 @@ class EncryptView(ui.AbstractView.AbstractView):
         self.container.clipboard_clear()
         self.container.clipboard_append(password)
         self.container.update()
-        # show "password copied" label
-        self.password_copied_label.config(text = translate("password.copied"))
-        self.container.after(4000, lambda: self.password_copied_label.config(text = ""))
+        # password copied label
+        password_copied_label = ctk.CTkLabel(master=self, text=translate("password.copied"))
+        password_copied_label.grid(column=1, row=2, columnspan=8, sticky=tk.NSEW)
+        password_copied_label.after(4000, password_copied_label.destroy)
 
     def remove_items(self) -> NoReturn:
         for entry in self.file_list.curselection():
