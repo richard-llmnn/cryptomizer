@@ -11,7 +11,7 @@ uninstall-linux:
 
 ctk := $(shell python -c 'import customtkinter;import os.path; print(os.path.split(customtkinter.__file__)[0]);')
 build-linux:
-	python -m nuitka src/main.py --output-dir=dist --onefile --linux-onefile-icon=assets/icon.png --assume-yes-for-downloads --include-data-dir="$(ctk)=customtkinter/" --enable-plugin=tk-inter -o dist/cryptomizer
+	python -m nuitka src/main.py --output-dir=dist --onefile --linux-onefile-icon=assets/icon.png --assume-yes-for-downloads --include-data-dir="$(ctk)=customtkinter/" --enable-plugin=tk-inter -o dist/cryptomizer.AppImage
 
 # ----- windows -----
 build-windows:
