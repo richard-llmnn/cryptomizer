@@ -15,7 +15,7 @@ build-linux:
 
 # ----- windows -----
 build-windows:
-	python -m nuitka src/main.py --output-dir=dist --onefile --mingw64 --assume-yes-for-downloads --windows-icon-from-ico=assets/icon.ico --include-data-dir="$(ctk)=customtkinter/" --enable-plugin=tk-inter -o dist/cryptomizer.exe
+	python -m nuitka src/main.py --output-dir=dist --onefile --mingw64 --assume-yes-for-downloads --windows-disable-console --windows-icon-from-ico=assets/icon.ico --include-data-dir="$(ctk)=customtkinter/" --enable-plugin=tk-inter -o dist/cryptomizer.exe
 
 # ----- mac-os -----
 build-macos:
