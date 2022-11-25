@@ -22,4 +22,4 @@ build-windows:
 # ----- mac-os -----
 build-macos:
 	mkdir dist
-	python -m nuitka src/main.py --output-dir=dist --onefile --linux-onefile-icon=assets/icon.png --assume-yes-for-downloads --macos-disable-console --include-data-dir="$(ctk)=customtkinter/" -o dist/cryptomizer
+	python -m nuitka src/main.py --output-dir=dist --onefile --linux-onefile-icon=assets/icon.png --assume-yes-for-downloads --macos-disable-console --macos-create-app-bundle --include-data-dir="$(ctk)=customtkinter/" -o dist/cryptomizer
