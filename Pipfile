@@ -9,6 +9,7 @@ pycryptodome = "*"
 nuitka = "*"
 ordered-set = "*"
 imageio = "*"
+zstandard = "*"
 
 [dev-packages]
 
