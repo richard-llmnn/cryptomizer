@@ -2,7 +2,7 @@ dictionary = {
     "self": "العربيه",
     "encrypt.files": "تشفير الملفات",
     "decrypt.files": "فك تشفير الملفات",
-    "password": "الرمز",
+    "password": "كلمه السر",
     "generate": "توليد عشوائي",
     "remove.selected.elements": "إزالة العناصر المحددة",
     "add.files": "اضف ملفات",
