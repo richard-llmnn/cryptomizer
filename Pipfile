@@ -1,15 +1,15 @@
-[[source]]
+#[[source]]
 url = "https://pypi.org/simple"
 verify_ssl = true
 name = "pypi"
 
 [packages]
-customtkinter = "*"
-pycryptodome = "*"
-nuitka = "*"
-ordered-set = "*"
-imageio = "*"
-zstandard = "*"
+customtkinter = ">=5.1.0"
+pycryptodome = ">=3.15.0"
+nuitka = ">=1.0"
+ordered-set = ">=4.1.0"
+imageio = ">=2.20.0"
+zstandard = ">=0.19.0"
 
 [dev-packages]
 
