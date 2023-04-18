@@ -4,12 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-customtkinter = ">=5.1.0"
-pycryptodome = ">=3.15.0"
-nuitka = ">=1.0"
+customtkinter = ">=5.1.2"
+pycryptodome = ">=3.17.0"
+nuitka = ">=1.5.6"
 ordered-set = ">=4.1.0"
-imageio = ">=2.20.0"
-zstandard = ">=0.19.0"
+imageio = ">=2.27.0"
+zstandard = ">=0.21.0"
 
 [dev-packages]
 
