@@ -6,13 +6,12 @@ name = "pypi"
 [packages]
 customtkinter = ">=5.1.2"
 pycryptodome = ">=3.17.0"
+
+[dev-packages]
 nuitka = ">=1.5.6"
 ordered-set = ">=4.1.0"
 imageio = ">=2.27.0"
 zstandard = ">=0.21.0"
-packaging = ">=23.2" # missing dependency of customtkinter 5.2.1
-
-[dev-packages]
 
 [requires]
 python_version = "3.10"
