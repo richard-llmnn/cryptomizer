@@ -90,10 +90,10 @@
         },
         "nuitka": {
             "hashes": [
-                "sha256:4db728e224043308112b40a8d0a2168e9ccd956e713238617b3e47779a740512"
+                "sha256:471c61d19d09fec7b652d5603f95f18fc76122156a9ef5c40730ca8f5a80a25d"
             ],
             "index": "pypi",
-            "version": "==1.9.7"
+            "version": "==2.0"
         },
         "numpy": {
             "hashes": [
@@ -143,6 +143,7 @@
                 "sha256:694a8e44c87657c59292ede72891eb91d34131f6531463aab3009191c77364a8"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.7'",
             "version": "==4.1.0"
         },
         "pillow": {
@@ -269,6 +270,7 @@
                 "sha256:fe3390c538f12437b859d815040763abc728955a52ca6ff9c5d4ac707c4ad98e"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.8'",
             "version": "==0.22.0"
         }
     }
